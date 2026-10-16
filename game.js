@@ -215,7 +215,7 @@ function deadBall(txt,col,next){G.phase='dead';G.deadT=0;G.deadTxt=txt;G.deadCol
 function touchdown(){if(G.phase==='dead'||G.phase==='celebrate')return;G.my+=6;G.stats.td++;SFX.td();buzz([40,40,80]);shake=.3;G.phase='celebrate';G.celT=0;
  for(var i=0;i<60;i++)parts.push({x:100+rnd(0,8),y:rnd(5,48),vx:rnd(-6,6),vy:rnd(-8,2),l:rnd(.8,1.6),c:pick([me().c1,me().c2,'#fff','#ffd400']),f:1});}
 function afterTD(){startKick('xp');}
-function useClock(s){G.clock-=s;while(G.clock<=0){if(G.q<4||(G.q>=4&&G.my===G.op)){G.q++;G.clock+=G.q>4?TUNE.QLEN/2:TUNE.QLEN;if(G.clock<0)G.clock=G.q>4?TUNE.QLEN/2:TUNE.QLEN;banner(G.q>4?'OVERTIME':G.q===3?'SECOND HALF':'QUARTER '+G.q,'','#ffd400',1.2);}else{G.clock=0;G.over=true;break;}}}
+function useClock(s){G.clock-=s;while(G.clock<=0){if(G.q<4||(G.q>=4&&G.q<6&&G.my===G.op)){G.q++;G.clock+=G.q>4?TUNE.QLEN/2:TUNE.QLEN;if(G.clock<0)G.clock=G.q>4?TUNE.QLEN/2:TUNE.QLEN;banner(G.q>4?'OVERTIME':G.q===3?'SECOND HALF':'QUARTER '+G.q,'','#ffd400',1.2);}else{G.clock=0;G.over=true;break;}}}
 // ----- kicking meter -----
 function startKick(kind){var dist=100-G.los+17;var w=kind==='xp'?0.42:kind==='fg'?Math.max(.12,.42-(dist-20)*0.008):0.3;w+=C.staff.ST*0.03+(ovr('K')-70)*0.004;
  G.kick={kind:kind,pos:0,t:0,w:w,done:false,res:null,anim:0,dist:dist,spd:kind==='xp'?2.2:2.8};G.phase='kick';}
@@ -367,7 +367,7 @@ function drawTeam(){bg();ptextS('TEAM, STAFF AND FACILITIES',W/2,6,1,'#ffd400','
  items.forEach(function(it,i){var lv=C[it[1]][it[0]],cost=upgCost(lv),yy=uy+i*(half?18:24);ptext(it[2]+' LV '+lv,ux,yy+4,1,'#fff');
   if(lv<3)button(ux+(half?120:110),yy,78,half?15:18,'UP '+cost,function(){if(C.pts>=cost){C.pts-=cost;C[it[1]][it[0]]++;save();}else SFX.boo();},C.pts>=cost?'#1e7a3c':'#555');else ptext('MAX',ux+(half?140:130),yy+4,1,'#ffd400');});
  button(6,H-26,60,20,'BACK',function(){scene='hub'},'#444');}
-function drawFinal(){bg();var f=G.final;ptextS(f.win?'VICTORY!':'FINAL',W/2,16,4,f.win?'#ffd400':'#ff7070','c');
+function drawFinal(){bg();var f=G.final;ptextS(f.win?'VICTORY!':G.my===G.op?'TIE GAME':'FINAL',W/2,16,4,f.win?'#ffd400':'#ff7070','c');
  drawBadge(me(),W/2-80,50,2);drawBadge(opp(),W/2+48,50,2);ptextS(G.my+' - '+G.op,W/2,62,3,'#fff','c');
  ptext('PASSING '+G.stats.comp+'/'+G.stats.att+'  '+G.stats.pyd+' YDS  RUSH '+G.stats.ryd+'  TD '+G.stats.td+'  INT '+G.stats.int,W/2,96,1,'#fff','c');
  ptext('+'+f.pts+' POINTS'+(G.rival?' (RIVALRY HYPE)':''),W/2,108,1,'#9cff57','c');ptext('RECORD '+C.w+'-'+C.l,W/2,118,1,'#ffd400','c');
