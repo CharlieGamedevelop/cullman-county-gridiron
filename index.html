@@ -27,13 +27,13 @@ canvas{display:block;width:100vw;height:100vh}
 <meta name="format-detection" content="telephone=no">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
-<link rel="stylesheet" href="fit.css?v=5">
-<script src="fit.js?v=5"></script>
+<link rel="stylesheet" href="fit.css?v=6">
+<script src="fit.js?v=6"></script>
 <style>body.ingame #mute,body.ingame #fsbtn{display:none}body.lefty #mute{right:auto!important;left:max(8px,env(safe-area-inset-left))!important}body.lefty #fsbtn{right:auto;left:calc(max(8px,env(safe-area-inset-left)) + 52px)}</style></head><body><script>/* safe storage + error display, must run first */
 (function(){var ok=false;try{var k='__t';window.localStorage.setItem(k,'1');window.localStorage.removeItem(k);ok=true}catch(e){}
 var mem={};window.LS=ok?{getItem:function(k){try{return localStorage.getItem(k)}catch(e){return mem[k]||null}},setItem:function(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=String(v)}}}:{getItem:function(k){return k in mem?mem[k]:null},setItem:function(k,v){mem[k]=String(v)}};
-window.addEventListener('error',function(e){try{var d=document.getElementById('errbox');if(!d){d=document.createElement('div');d.id='errbox';d.style.cssText='position:fixed;left:0;right:0;top:0;z-index:99;background:#b00;color:#fff;font:12px monospace;padding:6px;white-space:pre-wrap';document.body&&document.body.appendChild(d)}d.textContent='Game error: '+(e.message||e)+' (line '+(e.lineno||'?')+')'}catch(_){}});})();</script><div id="tp"><h1>Cullman County Gridiron</h1><p>Pick your school and build a county powerhouse.<br><b>Pass:</b> touch the field and drag BACK, then let go.<br><b>Run:</b> tap and let go to scramble, swipe up or down to steer, tap to juke.<br><b>Kicks:</b> tap to stop the meter in the green.</p><button id="tpb">TAP TO PLAY</button><p style="opacity:.75;font-size:14px">Tip: turn your phone sideways for a bigger field.</p></div><div id="rot">📱 Turn your phone sideways for a bigger field</div><canvas id="c"></canvas><button id="mute" aria-label="Mute">🔊</button>
-<script src="game.js?v=5"></script>
+window.addEventListener('error',function(e){try{var d=document.getElementById('errbox');if(!d){d=document.createElement('div');d.id='errbox';d.style.cssText='position:fixed;left:0;right:0;top:0;z-index:99;background:#b00;color:#fff;font:12px monospace;padding:6px;white-space:pre-wrap';document.body&&document.body.appendChild(d)}d.textContent='Game error: '+(e.message||e)+' (line '+(e.lineno||'?')+')'}catch(_){}});})();</script><div id="tp"><h1>Cullman County Gridiron</h1><p>Pick your school and build a county powerhouse.<br><b>Plays:</b> tap one of 3 play cards (arrows show 9 plays).<br><b>Pass:</b> tap a receiver to throw. Green ring means open.<br><b>Run:</b> automatic handoff, swipe up or down to steer, tap to juke.<br><b>Kicks:</b> tap to stop the meter in the green.</p><button id="tpb">TAP TO PLAY</button><p style="opacity:.75;font-size:14px">Tip: turn your phone sideways for a bigger field.</p></div><div id="rot">📱 Turn your phone sideways for a bigger field</div><canvas id="c"></canvas><button id="mute" aria-label="Mute">🔊</button>
+<script src="game.js?v=6"></script>
 <script>(function(){var done=false;
 function go(e){if(done)return;done=true;if(e&&e.type==='touchend'&&e.cancelable)e.preventDefault();if(e&&e.stopPropagation)e.stopPropagation();
 var o=document.getElementById('tp');if(o&&o.parentNode)o.parentNode.removeChild(o);
