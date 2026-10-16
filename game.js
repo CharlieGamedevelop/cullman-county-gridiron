@@ -48,8 +48,9 @@ function resize(){try{if(window.__fitMeasure)window.__fitMeasure();}catch(e){}va
  var sf=(ST.fit==='stretch')?{t:0,r:0,b:0,l:0}:(f.safe||{t:0,r:0,b:0,l:0});
  DPR=ST.quality==='low'?1:Math.min(window.devicePixelRatio||1,3);
  var aw=Math.max(100,iw-sf.l-sf.r),ah=Math.max(100,ih-sf.t-sf.b);
- W=aw<ah?300:480;S=aw/W;H=Math.round(ah/S);if(H<240){H=240;S=Math.min(aw/W,ah/H);}
- if(ST.fit==='fit'&&S*DPR>=2){var Si=Math.floor(S*DPR)/DPR;if(Si>0){S=Si;H=Math.max(240,Math.floor(ah/S));}}
+ if(aw<ah){W=300;S=aw/W;H=Math.round(ah/S);if(H<240){H=240;S=Math.min(aw/W,ah/H);}}
+ else{S=ah/270;W=Math.round(aw/S);if(W<420){W=420;S=aw/W;}if(W>640){W=640;S=Math.min(aw/W,ah/240);}H=Math.round(ah/S);}
+ if(ST.fit==='fit'&&S*DPR>=2){var Si=Math.floor(S*DPR)/DPR;if(Si>0&&Si/S>0.88){S=Si;if(aw>=ah){W=Math.min(640,Math.max(420,Math.floor(aw/S)));}H=Math.max(240,Math.floor(ah/S));}}
  OX=sf.l+(aw-W*S)/2;OY=sf.t+(ah-H*S)/2;if(OY<sf.t)OY=sf.t;
  SA={t:0,r:0,b:0,l:0};cv.width=Math.round(iw*DPR);cv.height=Math.round(ih*DPR);cv.style.width=iw+'px';cv.style.height=ih+'px';}
 window.addEventListener('resize',resize);window.addEventListener('orientationchange',function(){setTimeout(resize,250)});
