@@ -348,9 +348,9 @@ function render(){btns=[];ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle='#05070f';
 let last=performance.now();function loop(now){const dt=Math.max(0,Math.min(.05,(now-last)/1000));last=now;update(dt);render();requestAnimationFrame(loop);}requestAnimationFrame(loop);
 window.__fb={pick(a,b){pickTeam(a);pickTeam(b)},startGame,action,get G(){return G},get scene(){return scene},get carrier(){return carrier},get ents(){return ents},keys,
  fastTD(){G.los=100;G.firstX=110;setupPlay();for(const e of ents)if(e.side!==G.poss)e.stun=4;},endGame(){G.q=4;G.clock=1;}};
+window.__ccStart=function(){try{au()}catch(_){}};
 })();
 
-window.__ccStart=function(){try{au()}catch(_){}};
 </script><script>(function(){var done=false;
 function go(e){if(done)return;done=true;if(e&&e.type==='touchend'&&e.cancelable)e.preventDefault();if(e&&e.stopPropagation)e.stopPropagation();
 var o=document.getElementById('tp');if(o&&o.parentNode)o.parentNode.removeChild(o);
